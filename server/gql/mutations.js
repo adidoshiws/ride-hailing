@@ -11,6 +11,9 @@ import { supplierProductMutations } from '@gql/models/supplierProducts';
 import { userMutations } from '@gql/models/users';
 import { MUTATION_TYPE } from '@utils/constants';
 import { getQueryFields, TYPE_ATTRIBUTES } from '@utils/gqlFieldUtils';
+import { driverMutations } from '@gql/models/drivers';
+import { cabMutations } from '@gql/models/cabs';
+import { bookingMutations } from '@gql/models/bookings';
 const shouldAddMutation = (type, table) => {
   if (type === MUTATION_TYPE.CREATE) {
     const negateTablesList = ['users'];
@@ -44,7 +47,10 @@ export const DB_TABLES = {
   storeProduct: storeProductMutations,
   supplier: supplierMutations,
   supplierProduct: supplierProductMutations,
-  users: userMutations
+  users: userMutations,
+  drivers: driverMutations,
+  cabs: cabMutations,
+  bookings: bookingMutations
 };
 
 export const addMutations = () => {
