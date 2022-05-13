@@ -1,14 +1,10 @@
 CREATE TABLE drivers (
-    id INTEGER NOT NULL PRIMARY KEY,
+    id INT NOT NULL PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
     driver_name TEXT NOT NULL,
-    lat DECIMAL(8, 6) NOT NULL,
-    long DECIMAL(9, 6) NOT NULL,
+    location geometry(Point, 4326),
     created_at timestamp WITH time zone DEFAULT NOW(),
     updated_at timestamp WITH time zone,
-    deleted_at timestamp WITH time zone
+    canceled_at timestamp WITH time zone
 );
 
-CREATE INDEX drivers_lat ON drivers USING btree (lat);
-
-CREATE INDEX drivers_long ON drivers USING btree (long);
-
+CREATE INDEX driver_location ON drivers USING btree (location);
