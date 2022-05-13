@@ -1,7 +1,7 @@
 CREATE TABLE bookings (
     id INT NOT NULL PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
-    pickup TEXT NOT NULL,
-    destination TEXT NOT NULL,
+    pickup geometry(Point, 4326),
+    destination geometry(Point, 4326),
     user_id INTEGER NOT Null,
     cab_id INTEGER NOT Null,
     created_at timestamp WITH time zone DEFAULT NOW(),
