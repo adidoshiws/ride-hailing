@@ -8,12 +8,12 @@ import { totalConnectionFields } from '@utils/index';
 import { getQueryFields, TYPE_ATTRIBUTES } from '@server/utils/gqlFieldUtils';
 
 const { nodeInterface } = getNode();
-export const cabFields = new GraphQLObjectType({
+export const cabFields = {
   id: { type: GraphQLNonNull(GraphQLID) },
   cab_type: { type: GraphQLNonNull(GraphQLEnumType) },
   cab_number: { type: GraphQLNonNull(GraphQLInt) },
   cab_model: { type: GraphQLString() }
-});
+};
 
 // Cab
 export const Cab = new GraphQLObjectType({

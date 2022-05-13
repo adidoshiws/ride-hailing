@@ -8,11 +8,11 @@ import { totalConnectionFields } from '@utils/index';
 import { getQueryFields, TYPE_ATTRIBUTES } from '@server/utils/gqlFieldUtils';
 
 const { nodeInterface } = getNode();
-export const bookingFields = new GraphQLObjectType({
+export const bookingFields = {
   id: { type: GraphQLNonNull(GraphQLID) },
   name: { type: GraphQLString() },
   location: { type: GraphQLNonNull(GraphQLFloat) }
-});
+};
 
 // Booking
 export const Booking = new GraphQLObjectType({

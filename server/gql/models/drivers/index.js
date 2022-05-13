@@ -8,11 +8,11 @@ import { totalConnectionFields } from '@utils/index';
 import { getQueryFields, TYPE_ATTRIBUTES } from '@server/utils/gqlFieldUtils';
 
 const { nodeInterface } = getNode();
-export const driverFields = new GraphQLObjectType({
+export const driverFields = {
   id: { type: GraphQLNonNull(GraphQLID) },
   name: { type: GraphQLNonNull(GraphQLString) },
   location: { type: GraphQLNonNull(GraphQLFloat) }
-});
+};
 
 // Driver
 export const Driver = new GraphQLObjectType({
