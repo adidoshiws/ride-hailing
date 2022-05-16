@@ -2,6 +2,9 @@ import isNil from 'lodash/isNil';
 import set from 'lodash/set';
 import {
   addressesTable,
+  bookingsTable,
+  cabsTable,
+  driversTable,
   productsTable,
   purchasedProductsTable,
   storeProductsTable,
@@ -116,6 +119,27 @@ export function mockDBClient(config = { total: 10 }) {
     require('@database/models/purchased_products').getAttributes(sequelize, sequelize.DataTypes),
     config.total
   );
+  const driversMock = defineAndAddAttributes(
+    dbConnectionMock,
+    'drivers',
+    driversTable[0],
+    require('@database/models/drivers').getAttributes(sequelize, sequelize.DataTypes),
+    config.total
+  );
+  const cabsMock = defineAndAddAttributes(
+    dbConnectionMock,
+    'cabs',
+    cabsTable[0],
+    require('@database/models/cabs').getAttributes(sequelize, sequelize.DataTypes),
+    config.total
+  );
+  const bookingsMock = defineAndAddAttributes(
+    dbConnectionMock,
+    'bookings',
+    bookingsTable[0],
+    require('@database/models/bookings').getAttributes(sequelize, sequelize.DataTypes),
+    config.total
+  );
   return {
     client: dbConnectionMock,
     models: {
@@ -126,7 +150,10 @@ export function mockDBClient(config = { total: 10 }) {
       storeProducts: storeProductsMock,
       suppliers: suppliersMock,
       supplierProducts: supplierProductsMock,
-      users: usersMock
+      users: usersMock,
+      drivers: driversMock,
+      cabs: cabsMock,
+      bookings: bookingsMock
     }
   };
 }
