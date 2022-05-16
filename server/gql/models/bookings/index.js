@@ -10,7 +10,7 @@ import { getQueryFields, TYPE_ATTRIBUTES } from '@server/utils/gqlFieldUtils';
 const { nodeInterface } = getNode();
 export const bookingFields = {
   id: { type: GraphQLNonNull(GraphQLID) },
-  name: { type: GraphQLString() },
+  name: { type: GraphQLString },
   location: { type: GraphQLNonNull(GraphQLFloat) }
 };
 

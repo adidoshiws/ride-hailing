@@ -1,39 +1,28 @@
-module.exports = function(sequelize, DataTypes) {
-  return sequelize.define(
-    'drivers',
-    {
-      id: {
-        autoIncrement: true,
-        autoIncrementIdentity: true,
-        type: DataTypes.INTEGER,
-        allowNull: false,
-        primaryKey: true
-      },
-      name: {
-        type: DataTypes.TEXT,
-        allowNull: false
-      },
-      location: {
-        type: DataTypes.GEOMETRY('POINT', 4326),
-        allowNull: true
-      }
+export function getAttributes(sequelize, DataTypes) {
+  return {
+    id: {
+      autoIncrement: true,
+      autoIncrementIdentity: true,
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      primaryKey: true
     },
-    {
-      sequelize,
-      tableName: 'drivers',
-      schema: 'public',
-      timestamps: true,
-      indexes: [
-        {
-          name: 'driver_location',
-          fields: [{ name: 'location' }]
-        },
-        {
-          name: 'drivers_pkey',
-          unique: true,
-          fields: [{ name: 'id' }]
-        }
-      ]
+    name: {
+      type: DataTypes.TEXT,
+      allowNull: false
+    },
+    location: {
+      type: DataTypes.GEOMETRY('POINT', 4326),
+      allowNull: true
     }
-  );
-};
+  };
+}
+
+export function model(sequelize, DataTypes) {
+  const drivers = sequelize.define('drivers', getAttributes(sequelize, DataTypes), {
+    tableName: 'drivers',
+    paranoid: true,
+    timestamps: true
+  });
+  return drivers;
+}

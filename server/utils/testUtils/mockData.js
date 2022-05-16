@@ -62,9 +62,32 @@ export const supplierProductsTable = range(1, 10).map((_, index) => ({
   supplierId: index + 1
 }));
 
+export const driversTable = range(1, 10).map((_, index) => ({
+  id: (index + 1).toString(),
+  name: faker.name.firstName(),
+  location: faker.address.latitude()
+}));
+
+export const cabsTable = range(1, 10).map((_, index) => ({
+  id: (index + 1).toString(),
+  cab_type: 'Sedan',
+  cab_number: faker.vehicle.vrm(),
+  cab_model: faker.vehicle.model(),
+  driver_id: index + 1
+}));
+
+export const bookingsTable = range(1, 10).map((_, index) => ({
+  id: (index + 1).toString(),
+  pickup: faker.address.latitude(),
+  destination: faker.address.latitude(),
+  user_id: index + 1,
+  cab_id: index + 1,
+  created_at: faker.date.recent(createdBefore)
+}));
+
 export const DB_ENV = {
-  POSTGRES_HOST: 'host',
-  POSTGRES_USER: 'user',
+  POSTGRES_HOST: 'localhost',
+  POSTGRES_USER: 'root',
   POSTGRES_PASSWORD: 'password',
-  POSTGRES_DB: 'table'
+  POSTGRES_DB: 'reporting_dashboard_dev'
 };

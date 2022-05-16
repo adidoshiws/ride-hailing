@@ -7,12 +7,30 @@ import { sequelizedWhere } from '@database/dbUtils';
 import { totalConnectionFields } from '@utils/index';
 import { getQueryFields, TYPE_ATTRIBUTES } from '@server/utils/gqlFieldUtils';
 
+const CabEnumType = new GraphQLEnumType({
+  name: 'CabTypeEnum',
+  values: {
+    SEDAN: {
+      value: 0
+    },
+    HATCHBACK: {
+      value: 1
+    },
+    AUTO: {
+      value: 2
+    },
+    BIKE: {
+      value: 3
+    }
+  }
+});
+
 const { nodeInterface } = getNode();
 export const cabFields = {
   id: { type: GraphQLNonNull(GraphQLID) },
-  cab_type: { type: GraphQLNonNull(GraphQLEnumType) },
+  cab_type: { type: GraphQLNonNull(CabEnumType) },
   cab_number: { type: GraphQLNonNull(GraphQLInt) },
-  cab_model: { type: GraphQLString() }
+  cab_model: { type: GraphQLString }
 };
 
 // Cab
