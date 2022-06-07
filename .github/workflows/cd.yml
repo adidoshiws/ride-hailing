@@ -49,19 +49,19 @@ jobs:
                   docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
 
             - name: Render Amazon ECS task definition
-              id: wednesday-nodejs-challenge
+              id: ride-hailing-app
               uses: aws-actions/amazon-ecs-render-task-definition@v1
               with:
-                  task-definition: task-definition/master.json
-                  container-name: wednesday-nodejs-challenge
+                  task-definition: task-definition/dev.json
+                  container-name: ride-hailing-app
                   image: ${{ steps.login-ecr.outputs.registry }}/${{ secrets.AWS_ECR_REPOSITORY }}:${{ github.sha }}
 
             - name: Deploy to Amazon ECS service
               uses: aws-actions/amazon-ecs-deploy-task-definition@v1
               with:
-                  task-definition: ${{ steps.wednesday-nodejs-challenge.outputs.task-definition }}
-                  service: wednesday-challenge-service
-                  cluster: wednesday-challenge-cluster
+                  task-definition: ${{ steps.ride-hailing-app.outputs.task-definition }}
+                  service: ride-hailing-service
+                  cluster: ride-hailing-cluster
 
             - name: Logout of Amazon ECR
               if: always()
