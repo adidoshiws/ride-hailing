@@ -11,7 +11,8 @@ const { nodeInterface } = getNode();
 export const bookingFields = {
   id: { type: GraphQLNonNull(GraphQLID) },
   name: { type: GraphQLString },
-  location: { type: GraphQLNonNull(GraphQLFloat) }
+  pickup: { type: GraphQLNonNull(GraphQLFloat) },
+  destination: { type: GraphQLNonNull(GraphQLFloat) }
 };
 
 // Booking

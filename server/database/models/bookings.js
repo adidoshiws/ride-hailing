@@ -31,7 +31,19 @@ export function getAttributes(sequelize, DataTypes) {
         key: 'id'
       }
     },
-    canceled_at: {
+    createdAt: {
+      field: 'created_at',
+      type: DataTypes.DATE,
+      allowNull: true,
+      defaultValue: sequelize.fn('now')
+    },
+    updatedAt: {
+      field: 'updated_at',
+      type: DataTypes.DATE,
+      allowNull: true
+    },
+    deletedAt: {
+      field: 'deleted_at',
       type: DataTypes.DATE,
       allowNull: true
     }
@@ -40,23 +52,22 @@ export function getAttributes(sequelize, DataTypes) {
 
 export function model(sequelize, DataTypes) {
   const bookings = sequelize.define('bookings', getAttributes(sequelize, DataTypes), {
-    tableName: 'boookings',
+    tableName: 'bookings',
     paranoid: true,
     timestamps: true
   });
 
   bookings.associate = function(models) {
-    bookings.users = bookings.belongsToMany(models.users, {
-      through: models.users,
-      otherKey: 'user_id',
-      sourceKey: 'id'
-    });
-
-    bookings.cabs = bookings.belongsToMany(models.cabs, {
-      through: models.cabs,
-      otherKey: 'cab_id',
-      sourceKey: 'id'
-    });
+    // bookings.users = bookings.belongsToMany(models.users, {
+    //   through: models.users,
+    //   otherKey: 'user_id',
+    //   sourceKey: 'id'
+    // });
+    // bookings.cabs = bookings.belongsToMany(models.cabs, {
+    //   through: models.cabs,
+    //   otherKey: 'cab_id',
+    //   sourceKey: 'id'
+    // });
   };
   return bookings;
 }

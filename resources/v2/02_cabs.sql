@@ -7,7 +7,7 @@ CREATE TABLE cabs (
     cab_model TEXT NOT NULL,
     driver_id INTEGER NOT NULL,
     created_at timestamp WITH time zone DEFAULT NOW(),
-    updated_at timestamp WITH time zone,
+    deleted_at timestamp WITH time zone,
     CONSTRAINT cab_driver_id FOREIGN KEY (driver_id) REFERENCES drivers (id)
 );
 

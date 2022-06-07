@@ -27,6 +27,22 @@ export function getAttributes(sequelize, DataTypes) {
         model: 'drivers',
         key: 'id'
       }
+    },
+    createdAt: {
+      field: 'created_at',
+      type: DataTypes.DATE,
+      allowNull: true,
+      defaultValue: sequelize.fn('now')
+    },
+    updatedAt: {
+      field: 'updated_at',
+      type: DataTypes.DATE,
+      allowNull: true
+    },
+    deletedAt: {
+      field: 'deleted_at',
+      type: DataTypes.DATE,
+      allowNull: true
     }
   };
 }
@@ -38,11 +54,11 @@ export function model(sequelize, DataTypes) {
     timestamps: true
   });
 
-  cabs.associate = function(models) {
-    cabs.drivers = cabs.hasOne(models.drivers, {
-      foreignKey: 'driverId',
-      sourceKey: 'id'
-    });
-  };
+  // cabs.associate = function(models) {
+  //   cabs.drivers = cabs.hasOne(models.drivers, {
+  //     foreignKey: 'driverId',
+  //     sourceKey: 'id'
+  //   });
+  // };
   return cabs;
 }
